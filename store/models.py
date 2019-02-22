@@ -1,3 +1,30 @@
 from django.db import models
+from django.conf import settings
 
-# Create your models here.
+class Product(models.Model):
+	id = models.CharField(primary_key = True, max_length = 20)
+	name = models.CharField(max_length=200)
+	description = models.TextField()
+	price = models.FloatField()
+	
+	def saveProduct(self):
+		self.save()
+		
+	def __str__(self):
+		return self.name
+		
+	
+	
+	
+class Order(models.Model):
+	id = models.CharField(primary_key = True, max_length = 20)
+	product = models.ForeignKey(Product,on_delete=models.CASCADE)
+	recipient = models.CharField(max_length=200)
+	address = models.CharField(max_length=200)
+	creditCard = models.IntegerField()
+	
+	def saveOrder(self):
+		self.save()
+		
+	def __str__(self):
+		return self.id

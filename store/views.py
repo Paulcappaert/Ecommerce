@@ -1,10 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from .models import Product, Order
 
 def index(request):
-	return render(request, 'store/index.html')
+	products = Product.objects.all()
+	return render(request, 'store/index.html', {'products': products})
 	
 def productPage(request, pk):
-	return render(request, 'store/productPage.html')
+	product = get_object_or_404(Product, id=pk)
+	return render(request, 'store/productPage.html', {'product': product})
 
 

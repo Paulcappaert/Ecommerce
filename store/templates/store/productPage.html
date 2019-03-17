@@ -2,4 +2,5 @@
 
 {% block content %}
 <p>{{ product.name }}</p>
+<a href="{% url 'order' pk=product.id %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 {% endblock %}

@@ -18,7 +18,6 @@ class Product(models.Model):
 	
 	
 class Order(models.Model):
-	id = models.CharField(primary_key = True, max_length = 20)
 	product = models.ForeignKey(Product,on_delete=models.CASCADE)
 	recipient = models.CharField(max_length=200)
 	address = models.CharField(max_length=200)
@@ -30,4 +29,4 @@ class Order(models.Model):
 		self.save()
 		
 	def __str__(self):
-		return self.id
+		return self.recipient

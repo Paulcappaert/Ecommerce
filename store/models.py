@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from django.utils import timezone
 
 class Product(models.Model):
 	id = models.CharField(primary_key = True, max_length = 20)
@@ -22,8 +23,10 @@ class Order(models.Model):
 	recipient = models.CharField(max_length=200)
 	address = models.CharField(max_length=200)
 	creditCard = models.IntegerField()
+	order_date = models.DateTimeField(blank=True, null=True)
 	
 	def saveOrder(self):
+		self.order_date = timezone.now()
 		self.save()
 		
 	def __str__(self):

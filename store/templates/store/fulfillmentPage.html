@@ -1,0 +1,11 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+	{% for order in orders %}
+		<div class="block">
+			<h2>{{ order.product }}</h2>
+			<p> {{ order.recipient }} </p>
+			<p>{{ order.address }}</p>
+		</div>
+	{% endfor %}
+{% endblock %}

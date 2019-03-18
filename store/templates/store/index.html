@@ -2,7 +2,7 @@
 
 {% block content %}
 	{% for product in products %}
-		<div class="product">
+		<div class="block">
 			<h2><a href="{% url 'product' pk=product.id %}">{{ product.name }}</a></h2>
 			<p> {{ product.description }} </p>
 			<h3>${{ product.price }}</h3>

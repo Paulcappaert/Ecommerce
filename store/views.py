@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Product, Order
-from .forms import OrderForm
+from .forms import OrderForm, addForm
 
 def index(request):
 	products = Product.objects.all()

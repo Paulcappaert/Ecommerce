@@ -22,3 +22,15 @@ def orderPage(request, pk):
 	else:
 		form = OrderForm()
 	return render(request, 'store/orderPage.html', {'form': form})
+
+def addProductPage(request):
+	if request.method == "POST":
+		form = addForm(request.POST)
+		if form.is_valid():
+			product = form.save(commit = False)
+			product.saveProduct()
+			pk = product.id
+			return redirect('product', pk=pk)
+	else:
+		form = addForm()
+	return render(request, 'store/addProductPage.html', {'form': form})

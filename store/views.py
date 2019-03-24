@@ -34,3 +34,7 @@ def addProductPage(request):
 	else:
 		form = addForm()
 	return render(request, 'store/addProductPage.html', {'form': form})
+	
+def fulfillmentPage(request):
+	orders = Order.objects.all()
+	return render(request, 'store/fulfillmentPage.html', {'orders': orders})

@@ -1,6 +1,7 @@
 {% extends 'store/base.html' %}
 
 {% block content %}
+<h2>Unfulfilled Orders</h2>
 	{% for order in orders %}
 		<div class="block">
 			<h2>{{ order.product }}</h2>

@@ -6,11 +6,11 @@ from .forms import OrderForm, addForm
 def index(request):
 	products = Product.objects.all()
 	return render(request, 'store/index.html', {'products': products})
-	
+
 def productPage(request, pk):
 	product = get_object_or_404(Product, id=pk)
 	return render(request, 'store/productPage.html', {'product': product})
-	
+
 def orderPage(request, pk):
 	if request.method == "POST":
 		form = OrderForm(request.POST)
@@ -34,11 +34,31 @@ def addProductPage(request):
 	else:
 		form = addForm()
 	return render(request, 'store/addProductPage.html', {'form': form})
-	
+
 def fulfillmentPage(request):
 	orders = Order.objects.all()
 	return render(request, 'store/fulfillmentPage.html', {'orders': orders})
-	
+
 def removeOrder(request, pk):
 	Order.objects.filter(pk=pk).delete()
 	return render(request, 'store/removePage.html')
+
+def editProductPage(request, pk):
+	if request.method == "POST":
+		form = addForm(request.POST)
+		product = get_object_or_404(Product, id = pk)
+		product.delete()
+		if form.is_valid():
+			product = form.save(commit = False)
+			product.saveProduct()
+			pk = product.id
+			return redirect('product', pk=pk)
+	else:
+		product = get_object_or_404(Product, id = pk)
+		form = addForm()
+		form.initial['id'] = pk
+		form.initial['name'] = product.name
+		form.initial['description'] = product.description
+		form.initial['price'] = product.price
+
+	return render(request, 'store/editProductPage.html', {'form': form})

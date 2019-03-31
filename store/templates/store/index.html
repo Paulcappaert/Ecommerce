@@ -2,14 +2,18 @@
 
 {% block content %}
 	{% if user.is_authenticated %}
-	<h3>Add products<a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></h3>
-	<h3>Fulfill orders<a href="{% url 'fulfillment' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a></h3>
+	<h3><a href="{% url 'add' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>Add products&nbsp&nbsp
+		    <a href="{% url 'fulfillment' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>Fulfill orders
+	</h3>
 	{% endif %}
 	{% for product in products %}
 		<div class="block">
 			<h2><a href="{% url 'product' pk=product.id %}">{{ product.name }}</a></h2>
 			<p> {{ product.description }} </p>
 			<h3>${{ product.price }}</h3>
+			{% if user.is_authenticated %}
+				<h2 class="text-right"><a href="{% url 'edit' pk=product.id %}"><span class="glyphicon glyphicon-edit"></span></a></h2>
+			{% endif %}
 		</div>
 	{% endfor %}
 {% endblock %}

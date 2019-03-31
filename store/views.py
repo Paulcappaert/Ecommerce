@@ -38,3 +38,7 @@ def addProductPage(request):
 def fulfillmentPage(request):
 	orders = Order.objects.all()
 	return render(request, 'store/fulfillmentPage.html', {'orders': orders})
+	
+def removeOrder(request, pk):
+	Order.objects.filter(pk=pk).delete()
+	return render(request, 'store/removePage.html')

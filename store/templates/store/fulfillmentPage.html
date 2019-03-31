@@ -2,11 +2,16 @@
 
 {% block content %}
 <h2>Unfulfilled Orders</h2>
+	{% if orders.count == 0%}
+		<p>no orders to fulfill</p>
+	{% endif %}
 	{% for order in orders %}
 		<div class="block">
 			<h2>{{ order.product }}</h2>
 			<p> {{ order.recipient }} </p>
-			<p>{{ order.address }}</p>
+			<p> {{ order.address }}</p>
+			<p> {{order.creditCard }}</p>
+			<a href="{% url 'remove' pk=order.pk %}">fulfill this order</a>
 		</div>
 	{% endfor %}
 {% endblock %}

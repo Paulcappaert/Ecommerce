@@ -1,6 +1,7 @@
 {% extends 'store/base.html' %}
 
 {% block content %}
-<p>{{ product.name }}</p>
+<h2>{{ product.name }}</h2>
+<p>{{ product.description }}<p>
 <a href="{% url 'order' pk=product.id %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
 {% endblock %}

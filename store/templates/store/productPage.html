@@ -3,5 +3,11 @@
 {% block content %}
 <h2>{{ product.name }}</h2>
 <p>{{ product.description }}<p>
-<a href="{% url 'order' pk=product.id %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+<div class="text-center">
+  <img src="{{ product.image }}" style="width:150px; height:125px;">
+</div>
+<div class="text-right">
+  <a href="{% url 'order' pk=product.id %}" ><font size="6">Purchase</font></a>
+</div>
+  <a href="{% url 'index' %}" ><font size="2">Go Back</font></a>
 {% endblock %}

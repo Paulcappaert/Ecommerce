@@ -51,7 +51,7 @@ def removeOrder(request, pk):
 		return render(request, 'store/removePage.html')
 	else:
 		return redirect('index');
-		
+
 
 def editProductPage(request, pk):
 	if request.user.is_authenticated:
@@ -71,6 +71,7 @@ def editProductPage(request, pk):
 			form.initial['name'] = product.name
 			form.initial['description'] = product.description
 			form.initial['price'] = product.price
+			form.initial['image'] = product.image
 
 		return render(request, 'store/editProductPage.html', {'form': form})
 	else:

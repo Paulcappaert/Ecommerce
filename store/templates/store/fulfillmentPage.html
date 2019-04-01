@@ -11,7 +11,9 @@
 			<p> {{ order.recipient }} </p>
 			<p> {{ order.address }}</p>
 			<p> {{order.creditCard }}</p>
-			<a href="{% url 'remove' pk=order.pk %}">fulfill this order</a>
+			<div class="text-right">
+				<a  href="{% url 'remove' pk=order.pk %}">fulfill this order</a>
+			</div>
 		</div>
 	{% endfor %}
 {% endblock %}

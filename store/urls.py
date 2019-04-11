@@ -10,7 +10,7 @@ urlpatterns = [
 	path('fulfillment', views.fulfillmentPage, name='fulfillment'),
 	path('removeOrder/<int:pk>/', views.removeOrder, name='remove'),
     path('edit/<int:pk>/', views.editProductPage, name='edit'),
-	#path('confirmation', views.confirmationPage),
+	path('confirmation/<int:pk>/', views.ConfirmationPage, name='confirmation'),
 	#path('management', views.managementPage),
 	#path('orders', view.ordersPage),
 ]

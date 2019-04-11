@@ -18,7 +18,7 @@ def orderPage(request, pk):
 			order = form.save(commit=False)
 			order.product = get_object_or_404(Product, id=pk)
 			order.saveOrder()
-			return redirect('product', pk=pk)
+			return redirect('confirmation', pk=order.pk)
 	else:
 		form = OrderForm()
 	return render(request, 'store/orderPage.html', {'form': form})
@@ -75,4 +75,13 @@ def editProductPage(request, pk):
 
 		return render(request, 'store/editProductPage.html', {'form': form})
 	else:
-		return redirect('index');
+		return redirect('index')
+		
+def ConfirmationPage(request, pk):
+	try:
+		order = Order.objects.get(pk=pk)
+	except Order.DoesNotExist:
+		order = None
+	return render(request, 'store/ConfirmationPage.html', {'order': order})
+		
+
